@@ -1,0 +1,196 @@
+User Story,US ID,Test Case ID,Test Scenario,Preconditions,Test Steps,Expected Result,Test Data,Priority,Type
+"As an attendee, I want to browse events by category so I can find events I like",US-001,TC-US001-001,Verify event listing page displays all events,"Application is running, Database has seeded events","1. Navigate to application homepage
+2. Observe event listing page","All events are displayed in grid/list format with title, category, date, venue, cover image, and price range visible","Minimum 5 events across different categories",High,Positive
+"As an attendee, I want to browse events by category so I can find events I like",US-001,TC-US001-002,Verify Concert category filter,"User is on event listing page, Multiple events exist across categories","1. Click on 'Concert' category filter
+2. Observe filtered results","Only events with category='Concert' are displayed. Other category events are hidden","Events: Rock Night (Concert), Tech Conf (Conference), Sports Match (Sports)",High,Positive
+"As an attendee, I want to browse events by category so I can find events I like",US-001,TC-US001-003,Verify Sports category filter,"User is on event listing page, Multiple events exist across categories","1. Click on 'Sports' category filter
+2. Observe filtered results","Only events with category='Sports' are displayed","Events with Sports category",High,Positive
+"As an attendee, I want to browse events by category so I can find events I like",US-001,TC-US001-004,Verify Workshop category filter,"User is on event listing page, Multiple events exist across categories","1. Click on 'Workshop' category filter
+2. Observe filtered results","Only events with category='Workshop' are displayed","Events with Workshop category",Medium,Positive
+"As an attendee, I want to browse events by category so I can find events I like",US-001,TC-US001-005,Verify Conference category filter,"User is on event listing page, Multiple events exist across categories","1. Click on 'Conference' category filter
+2. Observe filtered results","Only events with category='Conference' are displayed","Events with Conference category",Medium,Positive
+"As an attendee, I want to browse events by category so I can find events I like",US-001,TC-US001-006,Verify 'All Categories' or reset filter,"User has applied a category filter","1. Click on 'All' or 'Clear Filter' button
+2. Observe results","All events from all categories are displayed again","All events in database",Medium,Positive
+"As an attendee, I want to browse events by category so I can find events I like",US-001,TC-US001-007,Verify filter with no matching events,"User is on event listing page, A category exists with 0 events","1. Click on category with no events
+2. Observe results","Empty state displayed with message 'No events found in this category' or similar","Category with 0 events",Low,Negative
+"As an attendee, I want to browse events by category so I can find events I like",US-001,TC-US001-008,Verify multiple filter selections,"User is on event listing page","1. Select 'Concert' filter
+2. Verify only Concert events shown
+3. Switch to 'Sports' filter
+4. Verify only Sports events shown","Filter updates correctly each time. Previous filter is cleared when new filter applied","Multiple categories with events",Medium,Positive
+"As an attendee, I want to browse events by category so I can find events I like",US-001,TC-US001-009,Verify event card information display,"Events exist in database","1. View any event card in listing
+2. Check displayed information","Each event card shows: Event title, Category badge/label, Event date, Venue name, Cover image, Price range (from ₹X)","Sample event with all fields populated",High,Positive
+"As an attendee, I want to browse events by category so I can find events I like",US-001,TC-US001-010,Verify event listing performance,"Database has 20+ events","1. Navigate to event listing page
+2. Measure page load time","Page loads within 3 seconds. All images render properly. No performance lag","20+ events in database",Medium,Performance
+"As an attendee, I want to see ticket categories and prices so I can book within my budget",US-002,TC-US002-001,Verify event detail page displays ticket categories,"Event exists with multiple ticket categories","1. Navigate to event listing
+2. Click on an event with ticket categories
+3. View event detail page","Event detail page displays all ticket categories with: Category name (e.g., General, VIP), Price per ticket, Total seats, Available seats","Event: Rock Night with General (₹999, 200 seats) and VIP (₹2499, 50 seats)",High,Positive
+"As an attendee, I want to see ticket categories and prices so I can book within my budget",US-002,TC-US002-002,Verify ticket category pricing display format,"User is on event detail page","1. Observe ticket category section
+2. Check price display format","Prices displayed in consistent format: ₹XXX or ₹X,XXX with currency symbol. Decimal places handled correctly","Various price points: ₹500, ₹999, ₹2499",High,Positive
+"As an attendee, I want to see ticket categories and prices so I can book within my budget",US-002,TC-US002-003,Verify seat availability display,"Event has ticket categories with varying availability","1. View event detail page
+2. Check seat availability for each category","Available seats shown for each ticket category. Format: 'X of Y seats available' or 'X seats left'","Category 1: 150/200 available, Category 2: 5/50 available",High,Positive
+"As an attendee, I want to see ticket categories and prices so I can book within my budget",US-002,TC-US002-004,Verify sold-out ticket category display,"Event has a ticket category with 0 available seats","1. Navigate to event with sold-out category
+2. View ticket categories","Sold-out category displayed with: 'SOLD OUT' badge/label, Book button disabled or hidden, Price and original capacity still visible","VIP category: 0/50 seats available",High,Positive
+"As an attendee, I want to see ticket categories and prices so I can book within my budget",US-002,TC-US002-005,Verify price comparison between categories,"Event has multiple ticket categories with different prices","1. View event detail page
+2. Compare prices across categories","Ticket categories ordered logically (e.g., cheapest to most expensive or by category type). Price differences clearly visible","General: ₹799, Premium: ₹1499, VIP: ₹2499",Medium,Positive
+"As an attendee, I want to see ticket categories and prices so I can book within my budget",US-002,TC-US002-006,Verify ticket category description/features,"Ticket categories have descriptions or features listed","1. View event detail page
+2. Check ticket category details","Each category shows additional details if available: Seating location, Perks/benefits, Access level","VIP: 'Front row seating, complimentary drinks, meet & greet'",Low,Positive
+"As an attendee, I want to see ticket categories and prices so I can book within my budget",US-002,TC-US002-007,Verify event with single ticket category,"Event has only one ticket category","1. View event detail page
+2. Check ticket display","Single ticket category displayed clearly with all details: name, price, availability","Event with only General Admission category",Medium,Positive
+"As an attendee, I want to see ticket categories and prices so I can book within my budget",US-002,TC-US002-008,Verify price range on listing vs detail page,"User views event on listing then detail page","1. Note price range on event listing card (e.g., 'From ₹999')
+2. Click event to view details
+3. Compare with actual ticket prices","Price range on listing matches lowest ticket price on detail page. Accurate representation","Listing shows 'From ₹999', Detail has General ₹999 and VIP ₹2499",High,Positive
+"As an attendee, I want to see ticket categories and prices so I can book within my budget",US-002,TC-US002-009,Verify ticket selection UI elements,"User is logged in, viewing event detail","1. Locate ticket category
+2. Check selection controls","UI provides clear controls: Dropdown or radio buttons to select category, Quantity selector (usually 1-5), Total price calculator showing category price × quantity","Event with multiple categories",High,Positive
+"As an attendee, I want to confirm a booking so I can secure my spot at the event",US-003,TC-US003-001,Verify successful booking creation,"User is logged in as Attendee, Event has available seats","1. Navigate to event detail page
+2. Select ticket category: VIP
+3. Select quantity: 2
+4. Click 'Book Now'
+5. Review booking summary
+6. Confirm booking","Booking created successfully. Booking confirmation displayed with: Booking ID/Reference number, Event name, Ticket category, Quantity, Total price, Status: CONFIRMED. Success message shown.","User: user@eventzone.com, Event: Rock Night, VIP: 2 tickets × ₹2499 = ₹4998",High,Positive
+"As an attendee, I want to confirm a booking so I can secure my spot at the event",US-003,TC-US003-002,Verify seat availability decrement after booking,"Event has 50 VIP seats available","1. Note current available seats: 50
+2. Create booking for 3 VIP tickets
+3. Confirm booking
+4. Check available seats again","Available seats reduced by booked quantity: 50 - 3 = 47 seats remaining. Updated immediately after booking.","VIP category initially has 50 available seats",High,Positive
+"As an attendee, I want to confirm a booking so I can secure my spot at the event",US-003,TC-US003-003,Verify booking appears in My Bookings,"User has created a booking","1. After confirming booking, navigate to 'My Bookings'
+2. Locate the new booking","New booking visible in My Bookings list with: Event name, Ticket category, Quantity, Booking reference, Booking date, Status, Cancel button","Recent booking should appear at top",High,Positive
+"As an attendee, I want to confirm a booking so I can secure my spot at the event",US-003,TC-US003-004,Verify booking with minimum quantity,"User is logged in, Event has available seats","1. Select event and ticket category
+2. Set quantity to 1 (minimum)
+3. Confirm booking","Booking successful for 1 ticket. All details recorded correctly.","Quantity: 1",Medium,Positive
+"As an attendee, I want to confirm a booking so I can secure my spot at the event",US-003,TC-US003-005,Verify booking with maximum quantity,"User is logged in, Event has 100+ available seats","1. Select event and ticket category
+2. Set quantity to 5 (maximum allowed)
+3. Confirm booking","Booking successful for 5 tickets. Total price calculated correctly (5 × unit price). Available seats decremented by 5.","Quantity: 5",Medium,Positive
+"As an attendee, I want to confirm a booking so I can secure my spot at the event",US-003,TC-US003-006,Verify booking unique reference generation,"User creates multiple bookings","1. Create first booking, note booking reference
+2. Create second booking, note booking reference
+3. Compare references","Each booking has unique booking reference ID. No duplicates. Format consistent (e.g., UUID or BOOK-XXXXX).","Create 2-3 bookings",High,Positive
+"As an attendee, I want to confirm a booking so I can secure my spot at the event",US-003,TC-US003-007,Verify booking without login (guest user),"User is not logged in","1. As guest, navigate to event detail
+2. Attempt to select ticket and book","Booking blocked. User redirected to login page with message 'Please login to book tickets'. Return URL preserved to resume booking after login.","Guest user",High,Negative
+"As an attendee, I want to confirm a booking so I can secure my spot at the event",US-003,TC-US003-008,Verify booking exceeds available seats,"Event has only 2 seats available","1. Attempt to book 5 tickets
+2. Submit booking","Booking fails with error message: 'Only 2 seats available. Please reduce quantity.' Booking not created. Available seats unchanged.","Available seats: 2, Attempt: 5",High,Negative
+"As an attendee, I want to confirm a booking so I can secure my spot at the event",US-003,TC-US003-009,Verify booking for sold-out event,"Event has 0 available seats","1. Navigate to sold-out event
+2. Attempt to book tickets","Book button disabled or shows 'SOLD OUT'. If button clicked, error message: 'This event is sold out.' Booking not created.","Event with 0 seats",Medium,Negative
+"As an attendee, I want to confirm a booking so I can secure my spot at the event",US-003,TC-US003-010,Verify booking confirmation email/notification,"User creates booking successfully","1. Complete booking
+2. Check for confirmation notification","[If implemented] Confirmation email sent to user's registered email OR in-app notification displayed with booking details","User email: user@eventzone.com",Low,Positive
+"As an attendee, I want to confirm a booking so I can secure my spot at the event",US-003,TC-US003-011,Verify booking data persistence,"User creates booking and logs out","1. Create booking
+2. Logout
+3. Login again
+4. Navigate to My Bookings","Booking persists in database. Visible in My Bookings after re-login. All details intact.","Any valid booking",High,Positive
+"As an attendee, I want to confirm a booking so I can secure my spot at the event",US-003,TC-US003-012,Verify concurrent booking handling,"Two users attempt to book last 3 seats simultaneously","1. User A starts booking for 2 tickets
+2. User B starts booking for 2 tickets simultaneously
+3. User A confirms first
+4. User B attempts to confirm","User A booking succeeds (3 - 2 = 1 seat left). User B booking fails with error: 'Only 1 seat available. Please adjust quantity.' Prevents overbooking.","Event with 3 seats, 2 concurrent users",High,Negative
+"As an attendee, I want to confirm a booking so I can secure my spot at the event",US-003,TC-US003-013,Verify booking cancellation,"User has confirmed booking","1. Navigate to My Bookings
+2. Locate booking
+3. Click 'Cancel' button
+4. Confirm cancellation","Booking status changed to 'CANCELLED'. Available seats restored (previous available + cancelled quantity). Cancellation confirmation message shown.","Existing booking with 2 tickets",High,Positive
+"As an attendee, I want to confirm a booking so I can secure my spot at the event",US-003,TC-US003-014,Verify seat restoration after cancellation,"User cancels booking for 3 tickets, Event had 47 seats available","1. Note available seats before cancellation: 47
+2. Cancel booking of 3 tickets
+3. Check available seats after cancellation","Available seats increased by cancelled quantity: 47 + 3 = 50 seats. Updated immediately.","Booking: 3 tickets, Available: 47",High,Positive
+"As an attendee, I want to confirm a booking so I can secure my spot at the event",US-003,TC-US003-015,Verify multiple bookings for same event,"User is logged in","1. Book 2 General tickets for Event A
+2. Book 1 VIP ticket for same Event A
+3. View My Bookings","Both bookings created as separate records. Each has unique booking reference. Both visible in My Bookings for same event.","Event A: General and VIP categories",Medium,Positive
+"As an organiser, I want to create an event and set ticket categories so attendees can book",US-004,TC-US004-001,Verify organiser can access event creation page,"User is logged in as Organiser","1. Login as organiser
+2. Navigate to Organiser Dashboard
+3. Click 'Create Event' button","Event creation form displayed with fields: Title, Description, Date, Venue, Category (dropdown), Cover Image URL, Submit button","Organiser: organiser@eventzone.com",High,Positive
+"As an organiser, I want to create an event and set ticket categories so attendees can book",US-004,TC-US004-002,Verify successful event creation,"User is logged in as Organiser","1. Access event creation form
+2. Fill in all required fields:
+   - Title: Jazz Night
+   - Description: Live jazz music
+   - Date: 2025-12-15 19:00
+   - Venue: Music Hall
+   - Category: Concert
+   - Cover Image: https://picsum.photos/400
+3. Submit form","Event created successfully. Success message displayed. Event appears in organiser's event list. Event visible in public catalog.","Title: Jazz Night, Date: Future date, Category: Concert",High,Positive
+"As an organiser, I want to create an event and set ticket categories so attendees can book",US-004,TC-US004-003,Verify event creation validation - required fields,"User is on event creation form","1. Leave Title field empty
+2. Fill other fields
+3. Submit form","Validation error displayed: 'Title is required' or similar. Event not created. Form remains on screen with entered data.","Empty title field",High,Negative
+"As an organiser, I want to create an event and set ticket categories so attendees can book",US-004,TC-US004-004,Verify event creation with past date,"User is on event creation form","1. Fill all fields
+2. Set Date to past date (e.g., 2025-01-01)
+3. Submit form","Validation error: 'Event date must be in the future' or similar. Event not created.","Date: 2025-01-01 (past)",Medium,Negative
+"As an organiser, I want to create an event and set ticket categories so attendees can book",US-004,TC-US004-005,Verify adding ticket category to event,"Event exists without ticket categories, User is organiser","1. Select event
+2. Click 'Add Ticket Category'
+3. Fill form:
+   - Name: VIP
+   - Price: 2499
+   - Total Seats: 50
+4. Submit","Ticket category created and linked to event. Success message displayed. Category visible on event detail page. Available seats = Total seats.","Event: Jazz Night, VIP: ₹2499, 50 seats",High,Positive
+"As an organiser, I want to create an event and set ticket categories so attendees can book",US-004,TC-US004-006,Verify adding multiple ticket categories,"Event exists, User is organiser","1. Add first category: General, ₹799, 200 seats
+2. Add second category: Premium, ₹1499, 100 seats
+3. Add third category: VIP, ₹2499, 50 seats
+4. View event detail","All three categories visible on event. Each shows correct price and seat count. All available for booking.","3 different categories with different pricing",High,Positive
+"As an organiser, I want to create an event and set ticket categories so attendees can book",US-004,TC-US004-007,Verify ticket category validation - required fields,"User is adding ticket category","1. Click 'Add Ticket Category'
+2. Leave Name field empty
+3. Fill Price and Seats
+4. Submit","Validation error: 'Category name is required'. Ticket category not created.","Empty name field",Medium,Negative
+"As an organiser, I want to create an event and set ticket categories so attendees can book",US-004,TC-US004-008,Verify ticket category validation - invalid price,"User is adding ticket category","1. Fill Name: VIP
+2. Enter Price: -500 (negative)
+3. Enter Seats: 50
+4. Submit","Validation error: 'Price must be positive' or 'Invalid price'. Ticket category not created.","Price: -500",Medium,Negative
+"As an organiser, I want to create an event and set ticket categories so attendees can book",US-004,TC-US004-009,Verify ticket category validation - invalid seats,"User is adding ticket category","1. Fill Name: General
+2. Enter Price: 999
+3. Enter Seats: 0 or negative
+4. Submit","Validation error: 'Total seats must be greater than 0'. Ticket category not created.","Seats: 0 or -10",Medium,Negative
+"As an organiser, I want to create an event and set ticket categories so attendees can book",US-004,TC-US004-010,Verify created event visible in public catalog,"Organiser creates event","1. Create event as organiser
+2. Logout
+3. View public event catalog (as guest)","Newly created event visible in public listing immediately. All details displayed correctly.","New event: Tech Workshop",High,Positive
+"As an organiser, I want to create an event and set ticket categories so attendees can book",US-004,TC-US004-011,Verify organiser can edit own event,"Organiser has created an event","1. Navigate to Organiser Dashboard
+2. Locate event in 'My Events'
+3. Click 'Edit'
+4. Modify title and description
+5. Save changes","Event updated successfully. Changes reflected immediately in event detail page. Success message shown.","Update title from 'Jazz Night' to 'Jazz Night 2025'",High,Positive
+"As an organiser, I want to create an event and set ticket categories so attendees can book",US-004,TC-US004-012,Verify organiser can delete own event,"Organiser has created an event with no bookings","1. Navigate to My Events
+2. Select event
+3. Click 'Delete' button
+4. Confirm deletion","Event deleted successfully. Removed from My Events list. Not visible in public catalog. Confirmation message shown.","Event with 0 bookings",Medium,Positive
+"As an organiser, I want to create an event and set ticket categories so attendees can book",US-004,TC-US004-013,Verify organiser cannot edit other organiser's event,"Two organisers exist, each with events","1. Login as Organiser A
+2. Attempt to access edit URL for Organiser B's event","Access denied. Error message: 'Unauthorized' or 'You can only edit your own events'. Redirect to dashboard or error page.","Organiser A, Organiser B with separate events",High,Negative
+"As an organiser, I want to create an event and set ticket categories so attendees can book",US-004,TC-US004-014,Verify organiser can view booking statistics,"Organiser's event has bookings","1. Login as organiser
+2. Navigate to Organiser Dashboard
+3. View event with bookings","Booking statistics displayed: Total bookings per ticket category, Revenue calculation (bookings × price), Available vs Sold seats","Event with 10 General bookings, 5 VIP bookings",High,Positive
+"As an organiser, I want to create an event and set ticket categories so attendees can book",US-004,TC-US004-015,Verify attendee cannot access organiser dashboard,"User is logged in as Attendee","1. Login as attendee
+2. Attempt to access /organiser or Organiser Dashboard URL","Access denied. 403 Forbidden or redirect to homepage. Error message: 'Organiser access only'.","Attendee user",High,Negative
+"As an admin, I want to manage categories so the event catalog stays organised",US-005,TC-US005-001,Verify admin can access category management,"User is logged in as Admin","1. Login as admin
+2. Navigate to Admin Panel
+3. Click 'Category Management'","Category management page displayed. List of existing categories shown with: Category name, Number of events using it, Edit and Delete buttons","Admin: admin@eventzone.com",High,Positive
+"As an admin, I want to manage categories so the event catalog stays organised",US-005,TC-US005-002,Verify admin can create new category,"User is logged in as Admin","1. Navigate to Category Management
+2. Click 'Add Category'
+3. Enter name: Festival
+4. Submit","Category created successfully. Success message displayed. New category appears in category list. Available for organisers when creating events.","Category: Festival",High,Positive
+"As an admin, I want to manage categories so the event catalog stays organised",US-005,TC-US005-003,Verify new category available to organisers,"Admin creates new category 'Festival'","1. Admin creates 'Festival' category
+2. Login as organiser
+3. Create new event
+4. Check category dropdown","'Festival' appears in category dropdown options. Organisers can select it for their events.","New category: Festival",High,Positive
+"As an admin, I want to manage categories so the event catalog stays organised",US-005,TC-US005-004,Verify admin can edit existing category,"Admin is on Category Management page, Category 'Workshop' exists","1. Locate 'Workshop' category
+2. Click 'Edit'
+3. Change name to 'Workshops'
+4. Save","Category name updated to 'Workshops'. All events using this category reflect the new name. Success message shown.","Edit 'Workshop' to 'Workshops'",Medium,Positive
+"As an admin, I want to manage categories so the event catalog stays organised",US-005,TC-US005-005,Verify admin can delete unused category,"Category exists with 0 events","1. Navigate to Category Management
+2. Select category with 0 events
+3. Click 'Delete'
+4. Confirm deletion","Category deleted successfully. Removed from category list. Confirmation message shown.","Category with 0 associated events",Medium,Positive
+"As an admin, I want to manage categories so the event catalog stays organised",US-005,TC-US005-006,Verify admin cannot delete category with events,"Category has associated events","1. Attempt to delete 'Concert' category that has 5 events
+2. Confirm deletion","Deletion blocked. Error message: 'Cannot delete category with existing events' or similar. Category remains in list.","Concert category with 5 events",High,Negative
+"As an admin, I want to manage categories so the event catalog stays organised",US-005,TC-US005-007,Verify category name validation - duplicate,"Admin attempts to create category","1. Try to create category with name 'Concert'
+2. Submit (Concert already exists)","Validation error: 'Category already exists' or 'Duplicate category name'. Category not created.","Existing: Concert, Attempt: Concert",Medium,Negative
+"As an admin, I want to manage categories so the event catalog stays organised",US-005,TC-US005-008,Verify category name validation - empty,"Admin attempts to create category","1. Click 'Add Category'
+2. Leave name field empty
+3. Submit","Validation error: 'Category name is required'. Category not created.","Empty name field",Medium,Negative
+"As an admin, I want to manage categories so the event catalog stays organised",US-005,TC-US005-009,Verify admin can deactivate event,"Admin is on Event Management page","1. Select an active event
+2. Click 'Deactivate'
+3. Confirm action","Event status changed to 'Inactive'. Event hidden from public catalog. Event still visible in admin panel with 'Inactive' status. Bookings preserved.","Active event: Rock Night",High,Positive
+"As an admin, I want to manage categories so the event catalog stays organised",US-005,TC-US005-010,Verify deactivated event not visible to public,"Admin deactivates event","1. Deactivate event as admin
+2. Logout
+3. View public event catalog","Deactivated event not visible in public listing. Not accessible via direct URL. Returns 404 or 'Event not available' message.","Deactivated event",High,Positive
+"As an admin, I want to manage categories so the event catalog stays organised",US-005,TC-US005-011,Verify admin can reactivate event,"Admin has deactivated event","1. Navigate to Admin Panel
+2. View deactivated events
+3. Select event
+4. Click 'Activate'
+5. Confirm","Event status changed to 'Active'. Event visible in public catalog again. Success message shown.","Previously deactivated event",Medium,Positive
+"As an admin, I want to manage categories so the event catalog stays organised",US-005,TC-US005-012,Verify attendee cannot access admin panel,"User is logged in as Attendee","1. Login as attendee
+2. Attempt to access /admin or Admin Panel URL","Access denied. 403 Forbidden or redirect to homepage. Error message: 'Admin access only'.","Attendee user",High,Negative
+"As an admin, I want to manage categories so the event catalog stays organised",US-005,TC-US005-013,Verify organiser cannot access admin panel,"User is logged in as Organiser","1. Login as organiser
+2. Attempt to access /admin or Admin Panel URL","Access denied. 403 Forbidden or redirect to homepage. Error message: 'Admin access only'.","Organiser user",High,Negative
+"As an admin, I want to manage categories so the event catalog stays organised",US-005,TC-US005-014,Verify admin can view all events across organisers,"Multiple organisers have created events","1. Login as admin
+2. Navigate to Event Management
+3. View event list","All events from all organisers visible. Admin can view details, deactivate any event regardless of who created it.","Events from Organiser A and Organiser B",Medium,Positive
+"As an admin, I want to manage categories so the event catalog stays organised",US-005,TC-US005-015,Verify category usage count,"Admin is on Category Management page","1. View category list
+2. Check event count per category","Each category shows number of events using it. Count is accurate and updates when events are added/removed.","Concert: 5 events, Sports: 3 events, Workshop: 2 events",Low,Positive

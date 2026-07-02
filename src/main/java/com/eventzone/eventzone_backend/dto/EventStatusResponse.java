@@ -1,0 +1,21 @@
+package com.eventzone.eventzone_backend.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.UUID;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class EventStatusResponse {
+    
+    private UUID eventId;
+    private String title;
+    private Boolean active;
+    private String message;
+    
+}
