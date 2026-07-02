@@ -56,9 +56,9 @@ services:
       - key: JWT_EXPIRATION
         value: 86400000
       
-      # CORS Configuration - Add your frontend URL
+      # CORS Configuration - Frontend URLs
       - key: ALLOWED_ORIGINS
-        value: https://your-frontend-app.onrender.com
+        value: https://event-zone-app.netlify.app,http://localhost:3000,http://localhost:4200
     
     # Build command (optional, Docker handles this)
     # buildCommand: mvn clean package -DskipTests
