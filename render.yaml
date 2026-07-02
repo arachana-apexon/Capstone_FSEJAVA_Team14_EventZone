@@ -21,10 +21,20 @@ services:
       - key: SPRING_PROFILES_ACTIVE
         value: prod
       
-      - key: DATABASE_URL
+      - key: DB_HOST
         fromDatabase:
           name: eventzone-db
-          property: connectionString
+          property: host
+      
+      - key: DB_PORT
+        fromDatabase:
+          name: eventzone-db
+          property: port
+      
+      - key: DB_NAME
+        fromDatabase:
+          name: eventzone-db
+          property: database
       
       - key: DB_USERNAME
         fromDatabase:
