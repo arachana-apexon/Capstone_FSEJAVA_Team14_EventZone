@@ -89,6 +89,7 @@ class BookingServiceTest {
                 .id(bookingId)
                 .bookingRef("BOOK-12345678")
                 .quantity(2)
+                .totalAmount(new BigDecimal("200.00"))
                 .status("CONFIRMED")
                 .user(user)
                 .ticketCategory(ticketCategory)
@@ -124,6 +125,8 @@ class BookingServiceTest {
             assertEquals("CONFIRMED", response.getStatus(), "Status should be CONFIRMED");
             assertEquals("Tech Conference 2026", response.getEventTitle(), "Event title should match");
             assertEquals("VIP", response.getTicketCategoryName(), "Ticket category name should match");
+            assertEquals(new BigDecimal("100.00"), response.getUnitPrice(), "Unit price should match ticket price");
+            assertEquals(new BigDecimal("200.00"), response.getTotalAmount(), "Total amount should be price times quantity");
             assertEquals(48, ticketCategory.getAvailableSeats(), "Available seats should be reduced by 2");
             
             verify(userRepository, times(1)).findById(userId);

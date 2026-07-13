@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -54,6 +55,10 @@ public class BookingService {
         // Reduce available seats
         ticketCategory.setAvailableSeats(availableSeats - quantity);
         
+        // Calculate total amount = unit price * quantity
+        BigDecimal unitPrice = Objects.requireNonNull(ticketCategory.getPrice(), "Ticket price cannot be null");
+        BigDecimal totalAmount = unitPrice.multiply(BigDecimal.valueOf(quantity));
+        
         // Generate booking reference: BOOK- + first 8 chars of UUID
         String bookingRef = "BOOK-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
         
@@ -61,6 +66,7 @@ public class BookingService {
         Booking booking = Booking.builder()
                 .bookingRef(bookingRef)
                 .quantity(quantity)
+                .totalAmount(totalAmount)
                 .user(user)
                 .ticketCategory(ticketCategory)
                 .build();
@@ -129,6 +135,8 @@ public class BookingService {
                 .eventTitle(event.getTitle())
                 .ticketCategoryName(ticketCategory.getName())
                 .quantity(booking.getQuantity())
+                .unitPrice(ticketCategory.getPrice())
+                .totalAmount(booking.getTotalAmount())
                 .status(booking.getStatus())
                 .build();
     }

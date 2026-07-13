@@ -3,6 +3,7 @@ package com.eventzone.eventzone_backend.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -24,6 +25,9 @@ public class Booking {
     
     @Column(nullable = false)
     private Integer quantity;
+    
+    @Column(nullable = false, precision = 10, scale = 2)
+    private BigDecimal totalAmount;
     
     @Column(nullable = false)
     @Builder.Default
