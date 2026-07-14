@@ -224,6 +224,7 @@ public class EventService {
                 .venue(event.getVenue())
                 .coverImageUrl(event.getCoverImageUrl())
                 .categoryName(category.getName())
+                .organiserId(organiser.getId())
                 .organiserName(organiser.getName())
                 .active(event.getActive())
                 .build();

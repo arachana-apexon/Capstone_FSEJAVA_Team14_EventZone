@@ -19,6 +19,7 @@ public class EventResponse {
     private String venue;
     private String coverImageUrl;
     private String categoryName;
+    private UUID organiserId;
     private String organiserName;
     private Boolean active;
     

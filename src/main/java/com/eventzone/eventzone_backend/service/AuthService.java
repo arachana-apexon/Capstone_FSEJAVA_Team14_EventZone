@@ -70,6 +70,7 @@ public class AuthService {
         // Return response
         return LoginResponse.builder()
                 .message("Login successful")
+                .userId(user.getId())
                 .email(user.getEmail())
                 .role(user.getRole())
                 .build();

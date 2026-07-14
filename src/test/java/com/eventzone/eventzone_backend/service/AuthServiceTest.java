@@ -259,6 +259,7 @@ class AuthServiceTest {
             // Assert
             assertNotNull(response, "Response should not be null");
             assertEquals("Login successful", response.getMessage(), "Message should match");
+            assertEquals(testUserId, response.getUserId(), "User ID should match");
             assertEquals("john.doe@example.com", response.getEmail(), "Email should match");
             assertEquals("ATTENDEE", response.getRole(), "Role should match");
             
@@ -429,6 +430,7 @@ class AuthServiceTest {
             // Assert
             assertNotNull(response, "Response should not be null");
             assertEquals("Login successful", response.getMessage(), "Message should match");
+            assertEquals(testUserId, response.getUserId(), "User ID should match");
             assertEquals("organiser@example.com", response.getEmail(), "Email should match");
             assertEquals("ORGANISER", response.getRole(), "Role should be ORGANISER");
             
@@ -462,6 +464,7 @@ class AuthServiceTest {
             // Assert
             assertNotNull(response, "Response should not be null");
             assertEquals("Login successful", response.getMessage(), "Message should match");
+            assertEquals(testUserId, response.getUserId(), "User ID should match");
             assertEquals("admin@example.com", response.getEmail(), "Email should match");
             assertEquals("ADMIN", response.getRole(), "Role should be ADMIN");
             
