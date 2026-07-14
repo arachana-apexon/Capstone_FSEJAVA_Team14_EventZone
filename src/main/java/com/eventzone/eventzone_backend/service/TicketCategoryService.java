@@ -111,6 +111,7 @@ public class TicketCategoryService {
                     return BookingSummaryResponse.builder()
                             .ticketCategoryId(ticketCategoryId)
                             .ticketCategoryName(ticketCategory.getName())
+                            .price(ticketCategory.getPrice())
                             .totalSeats(totalSeats)
                             .availableSeats(availableSeats)
                             .bookedSeats(bookedSeats)

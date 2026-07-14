@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 @Data
@@ -15,6 +16,7 @@ public class BookingSummaryResponse {
     
     private UUID ticketCategoryId;
     private String ticketCategoryName;
+    private BigDecimal price;
     private Integer totalSeats;
     private Integer availableSeats;
     private Integer bookedSeats;
