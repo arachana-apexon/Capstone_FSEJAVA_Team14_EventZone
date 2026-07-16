@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -58,7 +59,7 @@ public class CategoryService {
         verifyAdminRole(user);
         
         // Check if category already exists
-        if (eventCategoryRepository.findByName(name).isPresent()) {
+        if (eventCategoryRepository.findByNameAndActiveTrue(name).isPresent()) {
             throw new RuntimeException("Category already exists");
         }
 
@@ -79,42 +80,56 @@ public class CategoryService {
     }
 
     public List<CategoryResponse> getAllCategories() {
-        return eventCategoryRepository.findAll().stream()
-                .map(category -> new CategoryResponse(
-                        category.getId(),
-                        category.getName(),
-                        category.getActive()
-                ))
-                .collect(Collectors.toList());
+    return eventCategoryRepository.findByActiveTrue()
+            .stream()
+            .map(category -> new CategoryResponse(
+                    category.getId(),
+                    category.getName(),
+                    category.getActive()
+            ))
+            .collect(Collectors.toList());
     }
 
     public CategoryResponse updateCategory(UUID id, CategoryRequest request) {
-        Objects.requireNonNull(request, "Category request cannot be null");
-        
-        String name = Objects.requireNonNull(request.getName(), "Category name cannot be null");
-        
-        // Find user by userId
-        User user = userRepository.findById(Objects.requireNonNull(request.getUserId(), "User ID cannot be null"))
-                .orElseThrow(() -> new RuntimeException("User not found"));
-        
-        // Verify user has ADMIN role
-        verifyAdminRole(user);
-        
-        // Find category by id
-        EventCategory category = eventCategoryRepository.findById(Objects.requireNonNull(id, "Category ID cannot be null"))
-                .orElseThrow(() -> new RuntimeException("Category not found"));
+    Objects.requireNonNull(request, "Category request cannot be null");
 
-        // Update name
-        category.setName(name);
-        // Save and return response
-        EventCategory updatedCategory = eventCategoryRepository.save(category);
+    String name = Objects.requireNonNull(request.getName(), "Category name cannot be null");
 
-        return new CategoryResponse(
-                updatedCategory.getId(),
-                updatedCategory.getName(),
-                updatedCategory.getActive()
-        );
+    // Find user by userId
+    User user = userRepository.findById(
+            Objects.requireNonNull(request.getUserId(), "User ID cannot be null"))
+            .orElseThrow(() -> new RuntimeException("User not found"));
+
+    // Verify user has ADMIN role
+    verifyAdminRole(user);
+
+    // Find active category by id
+    EventCategory category = eventCategoryRepository.findByIdAndActiveTrue(
+            Objects.requireNonNull(id, "Category ID cannot be null"))
+            .orElseThrow(() -> new RuntimeException("Active category not found"));
+
+    // Check if another active category already has the same name
+    Optional<EventCategory> existingCategory =
+            eventCategoryRepository.findByNameAndActiveTrue(name);
+
+    if (existingCategory.isPresent()
+            && !existingCategory.get().getId().equals(category.getId())) {
+        throw new RuntimeException("Category already exists");
     }
+
+    // Update name
+    category.setName(name);
+
+    // Save
+    EventCategory updatedCategory = eventCategoryRepository.save(category);
+
+    // Return response
+    return new CategoryResponse(
+            updatedCategory.getId(),
+            updatedCategory.getName(),
+            updatedCategory.getActive()
+        );
+    }   
 
     public void deleteCategory(UUID id, UUID userId) {
         // Find user by userId
@@ -125,8 +140,9 @@ public class CategoryService {
         verifyAdminRole(user);
         
         // Find category by id
-        EventCategory category = eventCategoryRepository.findById(Objects.requireNonNull(id, "Category ID cannot be null"))
-                .orElseThrow(() -> new RuntimeException("Category not found"));
+        EventCategory category = eventCategoryRepository.findByIdAndActiveTrue(
+            Objects.requireNonNull(id, "Category ID cannot be null"))
+                .orElseThrow(() -> new RuntimeException("Active category not found"));
 
         // Soft delete - set active to false
         category.setActive(false);
